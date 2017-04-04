@@ -3,7 +3,13 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.all
+    @users = if params["github_handle"]
+               User.find do |u|
+                 u.info["github_handle"] == params["github_handle"]
+               end
+             else
+               User.all
+             end
 
     render json: @users
   end
@@ -39,13 +45,13 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :info)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :info)
+  end
 end
