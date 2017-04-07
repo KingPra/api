@@ -3,15 +3,19 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = if search_params.present?
-               User.find do |u|
-                 u.info[search_params] == value_params
-               end
+    @users = if search?
+               User.fetch_user(search_params)
              else
                User.all
              end
 
     render json: @users
+  end
+
+  def fetch_user
+    User.find do |u|
+      u.info[search_params] == value_params
+    end
   end
 
   # GET /users/1
@@ -56,11 +60,13 @@ class UsersController < ApplicationController
     params.require(:user).permit(:first_name, :last_name, :email, :info)
   end
 
-  def search_params
-    params["search"]
+  def search?
+    params["search"].present?
   end
 
-  def value_params
-    params["value"]
+  def search_params
+    {
+      params["search"] => params["value"]
+    }
   end
 end
