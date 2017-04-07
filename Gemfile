@@ -12,6 +12,7 @@ gem "pg", "~> 0.18"
 gem "puma", "~> 3.0"
 
 gem "pry-rails"
+gem "jwt"
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
@@ -29,6 +30,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "dotenv"
   gem "guard-rspec"
   gem "listen", "~> 3.0.5"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
