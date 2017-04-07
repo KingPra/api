@@ -3,9 +3,9 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = if params["github_handle"]
+    @users = if search_params.present?
                User.find do |u|
-                 u.info["github_handle"] == params["github_handle"]
+                 u.info[search_params] == value_params
                end
              else
                User.all
@@ -45,6 +45,7 @@ class UsersController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = User.find(params[:id])
@@ -53,5 +54,13 @@ class UsersController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :info)
+  end
+
+  def search_params
+    params["search"]
+  end
+
+  def value_params
+    params["value"]
   end
 end
