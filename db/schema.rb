@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(version: 20170407182452) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.json     "info"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.json     "info",       default: {}
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_foreign_key "events", "users"
