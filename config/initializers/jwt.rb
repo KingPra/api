@@ -1,5 +1,5 @@
 class JsonWebToken
-  SECRET = Rails.application.secrets.jwt_secret
+  SECRET = Rails.application.secrets.fetch(:jwt_secret)
 
   def self.encode(payload)
     JWT.encode(payload, SECRET)
