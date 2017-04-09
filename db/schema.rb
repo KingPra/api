@@ -10,17 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170407202126) do
+ActiveRecord::Schema.define(version: 20170409004222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "credits", force: :cascade do |t|
+    t.string   "name"
+    t.float    "points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "events", force: :cascade do |t|
     t.string   "category"
     t.integer  "user_id"
-    t.json     "info"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.json     "info",       default: {}
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "credit_id"
+    t.index ["credit_id"], name: "index_events_on_credit_id", using: :btree
     t.index ["user_id"], name: "index_events_on_user_id", using: :btree
   end
 

@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  has_many :events
+  has_many :credits, through: :events
+
   # Usage:
   #
   # User.fetch_user(github_handle: "foobar")
