@@ -20,5 +20,13 @@ class User < ApplicationRecord
     end
   end
 
+  def self.leaderboard
+    User.all.sort_by(&:credibility).reverse
+  end
+
+  def credibility
+    credits.pluck(:points).reduce(&:+)
+  end
+
   validates_uniqueness_of :email
 end
