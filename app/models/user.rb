@@ -25,7 +25,7 @@ class User < ApplicationRecord
   end
 
   def credibility
-    credits.pluck(:points).reduce(&:+)
+    credits.pluck(:points).reduce(&:+) || 0.0
   end
 
   validates_uniqueness_of :email
