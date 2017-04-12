@@ -43,6 +43,21 @@ POST /:username/events
 
 ```
 
+#### Creating New Events
+```
+{
+  event: {
+    category: "credit name goes here",
+    user_id:  user_id,
+    info:     {
+      whatever: "can go here",
+      etc:      "etc",
+    }
+  }
+}
+
+```
+
 ### Recommendations
 (elasticsearch driven)
 
