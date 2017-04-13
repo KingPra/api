@@ -11,6 +11,7 @@ gem "pg", "~> 0.18"
 # Use Puma as the app server
 gem "puma", "~> 3.0"
 gem "active_model_serializers"
+gem "interactor-rails"
 
 gem "pry-rails"
 gem "jwt"
@@ -28,6 +29,7 @@ gem "jwt"
 
 group :development, :test do
   gem "rspec-rails", "~>3.5"
+  gem "factory_girl_rails"
 end
 
 group :development do
