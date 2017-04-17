@@ -12,7 +12,7 @@ ENV APP_HOME /api
 RUN mkdir -p $APP_HOME
 WORKDIR $APP_HOME
 
-COPY Gemfile Gemfile
+COPY Gemfile $APP_HOME/
 RUN bundle install -j 4
 
-COPY . .
+COPY . $APP_HOME
