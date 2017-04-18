@@ -3,9 +3,7 @@ class CreditsController < ApplicationController
 
   # GET /credits
   def index
-    @credits = Credit.all
-
-    render json: @credits
+    render json: { credits: Credit.all }
   end
 
   # GET /credits/1

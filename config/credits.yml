@@ -12,3 +12,8 @@
   points: 50.0
   title: "Create a LinkedIn Profile"
   description: "Submit a link to your LinkedIn profile"
+
+- name: "codewars_honor"
+  points: 500.0
+  title: "TODO: associate codewars honor to cred"
+  description: "This will be cool"

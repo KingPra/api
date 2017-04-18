@@ -15,8 +15,12 @@ CREDITS.each do |attrs|
 end
 info "(#{Credit.count} credits created)"
 
-Token.find_or_create_by!(description: "dev testing")
-step "created token for 'dev testing'"
+if Rails.env.development?
+  Token.find_or_create_by!(description: "dev testing") do |t|
+    t.token = "devtoken"
+  end
+  step "created token for 'dev testing'"
+end
 
 unknown_user = User.find_or_create_by!(email: "unknown") do |u|
   u.first_name = "unknown"
