@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   has_many :events
   has_many :credits, through: :events
+  has_many :cred_steps
+
+  after_initialize :build_cred_steps
 
   # Usage:
   #
@@ -29,4 +32,14 @@ class User < ApplicationRecord
   end
 
   validates_uniqueness_of :email
+
+  private
+
+  def build_cred_steps
+    return unless cred_steps.empty?
+
+    self.cred_steps = Credit.pluck(:id).map do |int|
+      CredStep.new(credit_id: int)
+    end
+  end
 end

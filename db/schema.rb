@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170412125123) do
+ActiveRecord::Schema.define(version: 20170419123202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cred_steps", force: :cascade do |t|
+    t.integer  "credit_id"
+    t.integer  "user_id"
+    t.string   "status",     default: "incomplete"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.index ["credit_id"], name: "index_cred_steps_on_credit_id", using: :btree
+    t.index ["user_id"], name: "index_cred_steps_on_user_id", using: :btree
+  end
 
   create_table "credits", force: :cascade do |t|
     t.string   "name"
@@ -51,5 +61,7 @@ ActiveRecord::Schema.define(version: 20170412125123) do
     t.datetime "updated_at",              null: false
   end
 
+  add_foreign_key "cred_steps", "credits"
+  add_foreign_key "cred_steps", "users"
   add_foreign_key "events", "users"
 end
