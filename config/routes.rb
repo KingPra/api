@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :session, only: [:create] 
+
   resources :credibility, only: [:index]
   resources :credits
   resources :tokens
