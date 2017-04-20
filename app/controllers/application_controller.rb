@@ -5,12 +5,21 @@ class ApplicationController < ActionController::API
 
   def authenticate_request!
   ensure
-    unless valid_request
+    unless valid_client_request || valid_api_request
       render json: { errors: ["Not Authorized"] }, status: :unauthorized
     end
   end
 
-  def valid_request
+  def valid_client_request
+    return unless jwt_token
+    payload = JsonWebToken.decode(jwt_token)
+    email   = payload.fetch("email")
+    User.find_by(email: email).present?
+  rescue JWT::VerificationError, JWT::DecodeError
+    nil
+  end
+
+  def valid_api_request
     Token.valid? auth_token
   end
 
