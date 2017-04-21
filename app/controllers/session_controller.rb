@@ -3,8 +3,7 @@ class SessionController < ApplicationController
 
   def create
     result = CreateSession.call(google_oauth_hsh)
-    jwt    = result.token
-    render json: { token: jwt }, status: :created
+    render json: { user_info: result.user_info }, status: :created
   rescue
     render json: { errors: ["Not Authorized"] }, status: :unauthorized
   end

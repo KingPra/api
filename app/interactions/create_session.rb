@@ -19,16 +19,21 @@ class CreateSession
   # }
   #
   def call
-    return if generate_token
+    return if generate_response
     context.fail!(errors: context.errors)
   end
 
   private
 
-  def generate_token
+  def generate_response
     result         = ::GenerateUserJWT.call(user: user)
-    context.errors = result.errors if result.failure?
-    context.token  = result.token
+    context.errors = result.errors
+    return false if result.failure?
+    context.user_info = {
+      auth_token:  result.token,
+      picture:     user.picture,
+      credibility: user.credibility
+    }
   end
 
   def user
