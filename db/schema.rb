@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170419185051) do
+ActiveRecord::Schema.define(version: 20170422124510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,10 +56,15 @@ ActiveRecord::Schema.define(version: 20170419185051) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.json     "info",       default: {}
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.string   "picture",    default: ""
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "picture",           default: ""
+    t.string   "codewars_handle",   default: ""
+    t.string   "github_handle",     default: ""
+    t.string   "linkedin_url",      default: ""
+    t.string   "resume_site_url",   default: ""
+    t.string   "stackoverflow_url", default: ""
+    t.string   "twitter_handle",    default: ""
   end
 
   add_foreign_key "cred_steps", "credits"
