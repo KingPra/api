@@ -16,6 +16,7 @@ gem "interactor-rails"
 gem "pry-rails"
 gem "jwt"
 gem "httparty"
+gem "octokit"
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
