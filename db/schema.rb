@@ -16,14 +16,14 @@ ActiveRecord::Schema.define(version: 20170426134135) do
   enable_extension "plpgsql"
 
   create_table "challenges", force: :cascade do |t|
-    t.integer  "issue_id"
-    t.string   "body",       default: ""
-    t.string   "state",      default: ""
+    t.integer  "github_issue_id"
+    t.string   "body",            default: ""
+    t.string   "state",           default: ""
     t.string   "title"
-    t.string   "url",        default: ""
-    t.json     "labels",     default: []
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "url",             default: ""
+    t.json     "labels",          default: []
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "cred_steps", force: :cascade do |t|

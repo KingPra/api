@@ -5,7 +5,7 @@ class FetchIssues
     repos.each do |url|
       issues(url).each do |issue|
         attrs = build_attrs(issue)
-        c = Challenge.find_or_create_by(title: attrs[:title])
+        c = Challenge.find_or_create_by(github_issue_id: attrs[:github_issue_id])
         c.update_attributes! attrs
         challenges << c
       end
@@ -32,12 +32,12 @@ class FetchIssues
 
   def build_attrs(issue)
     {
-      issue_id: issue.id,
-      url:      issue.url,
-      title:    issue.title,
-      body:     issue.body,
-      state:    issue.state,
-      labels:   issue.labels.map(&:name)
+      github_issue_id: issue.id,
+      url:             issue.url,
+      title:           issue.title,
+      body:            issue.body,
+      state:           issue.state,
+      labels:          issue.labels.map(&:name)
     }
   end
 

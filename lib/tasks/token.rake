@@ -1,7 +1,6 @@
 desc "Generates/Fetches a valid JWT token"
 task token: :environment do
-  auth_token = Token.find_or_create_by!(description: "dev testing").token
-  payload    = { token: auth_token }
+  payload    = { email: "random@user.com" }
   jwt        = JsonWebToken.encode(payload)
   puts jwt
 end
