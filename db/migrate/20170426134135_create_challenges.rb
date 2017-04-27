@@ -6,6 +6,7 @@ class CreateChallenges < ActiveRecord::Migration[5.0]
       t.string :state, default: ""
       t.string :title
       t.string :url, default: ""
+      t.string :repo, default: ""
       t.json :labels, default: []
 
       t.timestamps

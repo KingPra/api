@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20170426134135) do
     t.string   "state",           default: ""
     t.string   "title"
     t.string   "url",             default: ""
+    t.string   "repo",            default: ""
     t.json     "labels",          default: []
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false

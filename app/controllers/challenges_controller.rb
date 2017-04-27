@@ -1,5 +1,5 @@
 class ChallengesController < ApplicationController
   def index
-    render json: { challeges: Challenge.all }
+    render json: { challenges: Challenge.all }
   end
 end
