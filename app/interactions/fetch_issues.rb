@@ -3,7 +3,9 @@ class FetchIssues
 
   def call
     repos.each do |repo|
-      issues(repo).each do |issue|
+      puts "fetching issues from '#{repo}'"
+      fetch_issues(repo).each do |issue|
+        puts "creating challenge for '#{issue.title}'"
         attrs = build_attrs(issue, repo)
         c = Challenge.find_or_create_by(github_issue_id: attrs[:github_issue_id])
         c.update_attributes! attrs
@@ -30,8 +32,16 @@ class FetchIssues
     @authorized_challenge_repos ||= YAML.load_file("config/authorized_challenge_repos.yml")
   end
 
-  def issues(url)
-    client.issues(url).reject(&:pull_request)
+  def fetch_issues(url)
+    issues = client.issues(url)
+
+    last_response = client.last_response
+    until last_response.rels[:next].nil?
+      last_response = last_response.rels[:next].get
+      issues += last_response.data
+    end
+
+    issues.reject(&:pull_request)
   end
 
   def build_attrs(issue, repo)

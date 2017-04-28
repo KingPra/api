@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :session, only: [:create] 
+  resources :repos, only: [:index] 
 
   resources :credibility, only: [:index]
   resources :challenges, only: [:index]
