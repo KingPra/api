@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+  include ActionController::Serialization
   before_action :authenticate_request!
 
   attr_reader :current_user
@@ -16,7 +17,8 @@ class ApplicationController < ActionController::API
     return unless jwt_token
     payload = JsonWebToken.decode(jwt_token)
     email   = payload.fetch("email")
-    @current_user = User.find_by(email: email).present?
+    @current_user = User.find_by(email: email)
+    @current_user.present?
   rescue JWT::VerificationError, JWT::DecodeError
     nil
   end
