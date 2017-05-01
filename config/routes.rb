@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   resources :tokens
   resources :events, only: [:index, :create]
   resources :cred_steps, only: [:index]
+
+  get :user, to: "users#show"
+  put :user, to: "users#update"
 end
