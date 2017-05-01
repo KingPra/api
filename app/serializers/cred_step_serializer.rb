@@ -1,5 +1,5 @@
 class CredStepSerializer < ActiveModel::Serializer
-  attributes :id, :body, :title, :state, :labels
+  attributes :id, :body, :title, :state, :labels, :url
 
   def body
     object.credit&.description
@@ -15,5 +15,9 @@ class CredStepSerializer < ActiveModel::Serializer
 
   def labels
     object.respond_to?(:labels) ? object.labels : []
+  end
+
+  def url
+    '#'
   end
 end
