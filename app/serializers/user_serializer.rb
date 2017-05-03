@@ -8,5 +8,6 @@ class UserSerializer < ActiveModel::Serializer
              :linkedin_url,
              :resume_site_url,
              :stackoverflow_url,
-             :twitter_handle
+             :twitter_handle,
+             :picture
 end

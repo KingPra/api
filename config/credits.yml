@@ -1,19 +1,19 @@
 - name: "til_tweet"
-  points: 10.0
+  points_per_unit: 10.0
   title: "Make a #til Tweet"
   description:  "Mention @cltjrdevs on Twitter and include #til along with something you learned"
 
 - name: "resume_site"
-  points: 100.0
+  points_per_unit: 100.0
   title: "Create a Resume Site"
   description: "Submit a link to your resume site that includes a way to contact you"
 
 - name: "linkedin_profile"
-  points: 50.0
+  points_per_unit: 50.0
   title: "Create a LinkedIn Profile"
   description: "Submit a link to your LinkedIn profile"
 
 - name: "codewars_honor"
-  points: 500.0
+  points_per_unit: 500.0
   title: "TODO: associate codewars honor to cred"
   description: "This will be cool"

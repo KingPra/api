@@ -30,6 +30,7 @@ class CreateSession
     context.errors = result.errors
     return false if result.failure?
     context.user_info = {
+      id:          user.id,
       auth_token:  result.token,
       picture:     user.picture,
       credibility: user.credibility

@@ -13,7 +13,8 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    render json: current_user
+    user = params[:id].present? ? User.find(params[:id]) : current_user
+    render json: user
   end
 
   def update

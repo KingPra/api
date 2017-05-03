@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :session, only: [:create] 
-  resources :repos, only: [:index] 
+  resources :session, only: [:create]
+  resources :repos, only: [:index]
 
   resources :credibility, only: [:index]
   resources :challenges, only: [:index]
@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   resources :events, only: [:index, :create]
   resources :cred_steps, only: [:index]
 
-  get :user, to: "users#show"
-  put :user, to: "users#update"
+  get :settings, to: "users#show"
+  put :settings, to: "users#update"
+
+  resources :users, only: [:show] do
+    resources :cred_transactions, only: [:index]
+  end
 end

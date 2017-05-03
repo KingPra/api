@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :user
   belongs_to :credit, optional: true
+  belongs_to :cred_line_item, optional: true
 
   before_validation :assign_credit
 

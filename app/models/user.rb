@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :events
   has_many :credits, through: :events
   has_many :cred_steps
+  has_many :cred_transactions
 
   after_initialize :build_cred_steps
 
@@ -28,7 +29,7 @@ class User < ApplicationRecord
   end
 
   def credibility
-    credits.pluck(:points).reduce(&:+) || 0.0
+    cred_transactions.pluck(:delta).flatten.reduce(&:+) || 0.0
   end
 
   validates_uniqueness_of :email
