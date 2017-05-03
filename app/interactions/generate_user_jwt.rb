@@ -20,6 +20,6 @@ class GenerateUserJWT
   end
 
   def expiration
-    context.expiration ||= 2.days.from_now.to_i
+    context.expiration ||= 1.year.from_now.to_i
   end
 end
