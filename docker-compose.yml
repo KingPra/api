@@ -1,5 +1,18 @@
 version: "2"
 services:
+  sidekiq: &base
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sidekiq -C config/sidekiq.yml
+    volumes:
+      - .:/api
+      - bundle:/usr/local/bundle
+    env_file:
+      - .env
+    links:
+      - postgres
+      - redis
   postgres:
     image: postgres:9.6
     environment:
@@ -9,15 +22,14 @@ services:
     ports:
       - "1213:5432"
   web:
-    build: .
+    <<: *base
     command: bin/rails server --port 3000 --binding 0.0.0.0
-    volumes:
-      - .:/api
-      - bundle:/usr/local/bundle
     ports:
       - "3000:3000"
-    links:
-      - postgres
+  redis:
+    image: redis:alpine
+    ports:
+      - "6380:6379"
 volumes:
   bundle:
 

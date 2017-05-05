@@ -13,10 +13,12 @@ gem "puma", "~> 3.0"
 gem "active_model_serializers"
 gem "interactor-rails"
 
+gem "sidekiq"
 gem "pry-rails"
 gem "jwt"
 gem "httparty"
 gem "octokit"
+gem "whenever"
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

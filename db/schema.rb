@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170502211513) do
+ActiveRecord::Schema.define(version: 20170504192146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20170502211513) do
     t.string   "resume_site_url",   default: ""
     t.string   "stackoverflow_url", default: ""
     t.string   "twitter_handle",    default: ""
+    t.integer  "codewars_honor",    default: 0
   end
 
   add_foreign_key "cred_steps", "credits"
