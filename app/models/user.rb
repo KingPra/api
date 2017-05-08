@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :meetups, through: :attendances
 
   after_initialize :build_cred_steps
+  after_create :create_new_account_event
 
   # Usage:
   #
@@ -35,6 +36,7 @@ class User < ApplicationRecord
   end
 
   validates_uniqueness_of :email
+  validates_presence_of :email, :first_name, :last_name
 
   private
 
@@ -44,5 +46,14 @@ class User < ApplicationRecord
     self.cred_steps = Credit.pluck(:id).map do |int|
       CredStep.new(credit_id: int)
     end
+  end
+
+  def create_new_account_event
+    CreateEvent.call!(
+      event_params: {
+        category: "account_created",
+        user_id:  id
+      }
+    )
   end
 end

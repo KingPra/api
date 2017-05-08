@@ -17,3 +17,8 @@
   points_per_unit: 500.0
   title: "TODO: associate codewars honor to cred"
   description: "This will be cool"
+
+- name: "account_created"
+  points_per_unit: 10.0
+  title: "Create an account with CLTJRDEVS"
+  description: ""

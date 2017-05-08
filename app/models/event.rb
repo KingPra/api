@@ -3,7 +3,7 @@ class Event < ApplicationRecord
   belongs_to :credit, optional: true
   belongs_to :cred_line_item, optional: true
 
-  before_validation :assign_credit
+  after_initialize :assign_credit
 
   delegate :points, to: :credit
 
