@@ -22,3 +22,8 @@
   points_per_unit: 10.0
   title: "Create an account with CLTJRDEVS"
   description: ""
+
+- name: "pull_request_closed"
+  points_per_unit: 50.0
+  title: "Get a Pull Request merged on GitHub"
+  description: "Open a Pull Request that references an open issue and get it merged"

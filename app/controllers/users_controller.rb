@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
-
   # GET /users
   def index
     @users = if search?
-               User.fetch_user(search_params)
+               User.find_by(search_params)
              else
                User.all
              end
@@ -37,7 +36,7 @@ class UsersController < ApplicationController
   end
 
   def search?
-    params["search"].present?
+    params["search"].present? && params["value"].present?
   end
 
   def search_params
@@ -51,5 +50,4 @@ class UsersController < ApplicationController
       u.info[search_params] == value_params
     end
   end
-
 end

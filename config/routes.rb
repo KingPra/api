@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get :settings, to: "users#show"
   put :settings, to: "users#update"
 
-  resources :users, only: [:show] do
+  resources :users, only: [:index, :show] do
     resources :cred_transactions, only: [:index]
   end
 

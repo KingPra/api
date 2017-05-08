@@ -45,5 +45,7 @@ class CreateEvent
 
   def delta
     context.delta ||= event.quantity * event.credit.points_per_unit
+  rescue NoMethodError
+    context.fail!(errors: { credit: ["'#{event.category}' does not exist in db"] })
   end
 end
