@@ -6,6 +6,6 @@ class CredTransactionSerializer < ActiveModel::Serializer
   end
 
   def action
-    object.event&.category
+    object.event&.credit&.title # screw you, law of demeter... this is ruby.
   end
 end

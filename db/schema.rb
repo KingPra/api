@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20170504192146) do
   create_table "events", force: :cascade do |t|
     t.string   "category"
     t.integer  "user_id"
+    t.integer  "quantity",   default: 1
     t.json     "info",       default: {}
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false

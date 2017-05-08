@@ -15,8 +15,7 @@ class EventsController < ApplicationController
 
   # POST /events
   def create
-    event  = Event.new(event_params)
-    result = CreateEvent.call(event: event)
+    result = CreateEvent.call(event_params: event_params)
 
     if result.success?
       render json: result.event, status: :created

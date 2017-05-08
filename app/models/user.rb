@@ -3,6 +3,8 @@ class User < ApplicationRecord
   has_many :credits, through: :events
   has_many :cred_steps
   has_many :cred_transactions
+  has_many :attendances
+  has_many :meetups, through: :attendances
 
   after_initialize :build_cred_steps
 
