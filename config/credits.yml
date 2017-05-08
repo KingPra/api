@@ -17,3 +17,8 @@
   points_per_unit: 500.0
   title: "TODO: associate codewars honor to cred"
   description: "This will be cool"
+
+- name: "meetup_attendance"
+  points_per_unit: 50.0
+  title: "Attend a CLTJRDEVS meetup"
+  description: "Submit a verification code at the meetup to receive credit for attendance"

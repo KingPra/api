@@ -39,4 +39,12 @@ class ApplicationController < ActionController::API
     return unless authorization_header.present?
     @jwt_token ||= authorization_header.split(" ").last
   end
+
+  def remote_ip
+    if Rails.env.production?
+      request.remote_ip
+    else
+      Net::HTTP.get(URI.parse("http://checkip.amazonaws.com/")).chomp
+    end
+  end
 end

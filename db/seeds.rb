@@ -46,3 +46,6 @@ step "created a #{e.category} event for random user"
 
 info "unknown user credibility: #{unknown_user.credibility}"
 info "random user credibility: #{random_user.credibility}"
+
+m = Meetup.create!(name: "Some Meetup Today", verification_code: "foo", meetup_date: Date.today)
+step "created meetup: '#{m.name}', meetup_date: #{m.meetup_date}"

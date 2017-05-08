@@ -2,7 +2,7 @@ class CreateEvent
   include Interactor
 
   def call
-    return if valid_event? && create_event
+    return if valid_event? && create_event && create_cred_transaction
     context.fail!(errors: context.errors)
   end
 
@@ -22,11 +22,28 @@ class CreateEvent
   end
 
   def event
-    context.event
+    context.event ||= Event.new(context.event_params)
   end
 
   def create_event
     context.errors = event.errors&.messages unless event.valid?
     event.save
+  end
+
+  def transaction
+    context.transaction ||= CredTransaction.new(
+      user_id:  event.user_id,
+      event_id: event.id,
+      delta:    delta
+    )
+  end
+
+  def create_cred_transaction
+    context.errors = transaction.errors&.messages unless transaction.valid?
+    transaction.save
+  end
+
+  def delta
+    context.delta ||= event.quantity * event.credit.points_per_unit
   end
 end

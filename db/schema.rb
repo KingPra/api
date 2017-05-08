@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170504192146) do
+ActiveRecord::Schema.define(version: 20170505145013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attendances", primary_key: ["user_id", "meetup_id"], force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "meetup_id",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meetup_id"], name: "index_attendances_on_meetup_id", using: :btree
+    t.index ["user_id"], name: "index_attendances_on_user_id", using: :btree
+  end
 
   create_table "challenges", force: :cascade do |t|
     t.integer  "github_issue_id"
@@ -59,12 +68,22 @@ ActiveRecord::Schema.define(version: 20170504192146) do
   create_table "events", force: :cascade do |t|
     t.string   "category"
     t.integer  "user_id"
+    t.integer  "quantity",   default: 1
     t.json     "info",       default: {}
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "credit_id"
     t.index ["credit_id"], name: "index_events_on_credit_id", using: :btree
     t.index ["user_id"], name: "index_events_on_user_id", using: :btree
+  end
+
+  create_table "meetups", force: :cascade do |t|
+    t.date     "meetup_date"
+    t.string   "encrypted_verification_code"
+    t.string   "encrypted_verification_code_iv"
+    t.string   "name"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "tokens", force: :cascade do |t|
@@ -90,6 +109,8 @@ ActiveRecord::Schema.define(version: 20170504192146) do
     t.integer  "codewars_honor",    default: 0
   end
 
+  add_foreign_key "attendances", "meetups"
+  add_foreign_key "attendances", "users"
   add_foreign_key "cred_steps", "credits"
   add_foreign_key "cred_steps", "users"
   add_foreign_key "cred_transactions", "events"

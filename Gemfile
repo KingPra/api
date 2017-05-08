@@ -19,6 +19,7 @@ gem "jwt"
 gem "httparty"
 gem "octokit"
 gem "whenever"
+gem "attr_encrypted", "~> 3.0.0"
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

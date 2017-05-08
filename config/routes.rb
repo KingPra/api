@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     resources :cred_transactions, only: [:index]
   end
 
+  resources :attendance, only: [:create, :new]
+
   if Rails.env.development?
     require 'sidekiq/web'
     Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
