@@ -16,3 +16,5 @@ COPY Gemfile $APP_HOME/
 RUN bundle install -j 4
 
 COPY . $APP_HOME
+
+CMD bin/rails server
