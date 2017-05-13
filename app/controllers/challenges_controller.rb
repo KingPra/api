@@ -1,7 +1,8 @@
 class ChallengesController < ApplicationController
   def index
-    if repo_params.present?
-      render json: { challenges: Challenge.for_repo(params[:repo]) }
+    result = FetchIssues.call(repo: repo_params)
+    if result.issues.present?
+      render json: { challenges: result.issues }.as_json
     else
       render json: current_user.cred_steps, root: "challenges"
     end
