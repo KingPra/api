@@ -1,4 +1,4 @@
-FROM ruby:2.4-slim
+FROM ruby:2.4.1-slim
 
 # Install dependencies:
 # - build-essential: To ensure certain gems can be compiled
