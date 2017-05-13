@@ -7,7 +7,11 @@ class UsersController < ApplicationController
                User.all
              end
 
-    render json: @users
+    if @users
+      render json: @users
+    else
+      render json: { errors: { user: "not found" } }, status: :not_found
+    end
   end
 
   # GET /users/1

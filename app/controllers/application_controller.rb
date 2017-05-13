@@ -16,7 +16,7 @@ class ApplicationController < ActionController::API
   def valid_client_request
     return unless jwt_token
     payload = JsonWebToken.decode(jwt_token)
-    email   = payload.fetch("email")
+    email   = payload.fetch("email") { :not_defined }
     @current_user = User.find_by(email: email)
     @current_user.present?
   rescue JWT::VerificationError, JWT::DecodeError
