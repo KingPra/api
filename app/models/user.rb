@@ -1,12 +1,10 @@
 class User < ApplicationRecord
   has_many :events
   has_many :credits, through: :events
-  has_many :cred_steps
   has_many :cred_transactions
   has_many :attendances
   has_many :meetups, through: :attendances
 
-  after_initialize :build_cred_steps
   after_create :create_new_account_event
 
   def self.unknown_user
@@ -28,14 +26,6 @@ class User < ApplicationRecord
   validates_presence_of :email, :first_name, :last_name
 
   private
-
-  def build_cred_steps
-    return unless cred_steps.empty?
-
-    self.cred_steps = Credit.pluck(:id).map do |int|
-      CredStep.new(credit_id: int)
-    end
-  end
 
   def create_new_account_event
     CreateEvent.call!(

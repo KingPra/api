@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :credits
   resources :tokens
   resources :events, only: [:index, :create]
-  resources :cred_steps, only: [:index]
 
   get :settings, to: "users#show"
   put :settings, to: "users#update"

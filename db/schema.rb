@@ -27,16 +27,6 @@ ActiveRecord::Schema.define(version: 20170504192146) do
     t.datetime "updated_at",                   null: false
   end
 
-  create_table "cred_steps", force: :cascade do |t|
-    t.integer  "credit_id"
-    t.integer  "user_id"
-    t.string   "status",     default: "incomplete"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.index ["credit_id"], name: "index_cred_steps_on_credit_id", using: :btree
-    t.index ["user_id"], name: "index_cred_steps_on_user_id", using: :btree
-  end
-
   create_table "cred_transactions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "event_id"
@@ -91,8 +81,6 @@ ActiveRecord::Schema.define(version: 20170504192146) do
     t.integer  "codewars_honor",    default: 0
   end
 
-  add_foreign_key "cred_steps", "credits"
-  add_foreign_key "cred_steps", "users"
   add_foreign_key "cred_transactions", "events"
   add_foreign_key "cred_transactions", "users"
   add_foreign_key "events", "users"
