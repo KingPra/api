@@ -6,7 +6,8 @@ class ReposController < ApplicationController
   private
 
   def serialized_repos
-    Challenge.repos.map do |repo|
+    result = FetchReposWithIssues.call
+    result.repos.map do |repo|
       {
         name: repo.split("/").last,
         path: repo
