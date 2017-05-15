@@ -1,5 +1,5 @@
 class CredTransactionSerializer < ActiveModel::Serializer
-  attributes :id, :delta, :delta_type, :created_at, :action
+  attributes :id, :delta, :delta_type, :timestamp, :action
 
   def delta_type
     object.delta.positive? ? "positive" : "negative"
@@ -7,5 +7,9 @@ class CredTransactionSerializer < ActiveModel::Serializer
 
   def action
     object.event&.credit&.title # screw you, law of demeter... this is ruby.
+  end
+
+  def timestamp
+    object.created_at.strftime "%l:%M%p %m/%d/%Y"
   end
 end

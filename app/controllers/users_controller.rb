@@ -45,7 +45,7 @@ class UsersController < ApplicationController
 
   def search_params
     {
-      params["search"] => params["value"]
+      params.require("search") => params.require("value")
     }
   end
 

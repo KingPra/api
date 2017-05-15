@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   resources :challenges, only: [:index]
   resources :credits
   resources :tokens
+  resources :github_webhooks, only: :create
   resources :events, only: [:index, :create]
-  resources :cred_steps, only: [:index]
 
   get :settings, to: "users#show"
   put :settings, to: "users#update"

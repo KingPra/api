@@ -4,7 +4,7 @@ class ChallengesController < ApplicationController
     if result.issues.present?
       render json: { challenges: result.issues }.as_json
     else
-      render json: current_user.cred_steps, root: "challenges"
+      head :not_found
     end
   end
 
