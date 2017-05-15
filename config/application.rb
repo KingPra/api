@@ -28,5 +28,17 @@ module Leaderboard
     config.api_only = true
     ActiveModelSerializers.config.adapter = :json
     config.active_job.queue_adapter = :sidekiq
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins "localhost:4200",
+          /\A.*\.charlottejuniordevs\.com\z/,
+          /\A.*\.herokuapp\.com\z/
+
+        resource "*",
+          headers: :any,
+          methods: %i(get post put patch options head)
+      end
+    end
   end
 end
