@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :challenges, only: [:index]
   resources :credits
   resources :tokens
+  resources :github_webhooks, only: :create
   resources :events, only: [:index, :create]
 
   get :settings, to: "users#show"
