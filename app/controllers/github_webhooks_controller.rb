@@ -8,7 +8,6 @@ class GithubWebhooksController < ApplicationController
     if result.success?
       render json: { event: result.event }, status: :created
     else
-      status 500
       render json: { errors: result.errors }, status: :unprocessable_entity
     end
   end
