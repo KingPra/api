@@ -50,3 +50,21 @@ Or, pipe it directly to your clipboard:
 ```sh
 rake token | pbcopy
 ```
+
+
+
+
+
+<!-- These are steps that were helpful for me when setting up the api to run locally -->
+
+You need to install docker-toolbox
+You need to install docker-for-mac
+
+then you need to run the following commands:
+
+docker-compose build
+docker-compose run --rm web bin/setup
+
+Once you get the above complete, you can get the api running with this command:
+
+docker-compose up
